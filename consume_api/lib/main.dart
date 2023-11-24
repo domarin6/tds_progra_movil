@@ -1,6 +1,10 @@
+import 'package:consume_api/dio_package.dart';
+import 'package:consume_api/http_package.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MaterialApp(home: MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -8,13 +12,39 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      title: 'Difference between http & dio packages',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Material App Bar'),
+          title: const Text('Http vs Dio'),
         ),
-        body: const Center(
-          child: Text('Hello World'),
+        body: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              OutlinedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ((context) => const HttpPackage()),
+                    ),
+                  );
+                },
+                child: const Text('HTTP'),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ((context) => const DioPackage()),
+                    ),
+                  );
+                },
+                child: const Text('DIO'),
+              ),
+            ],
+          ),
         ),
       ),
     );
